@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "BrowserSupport";
+}
+
+<h2>Browser Support</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">HTML5 APIs</div>
+    <div class="panel-body">
+        <ul>
+            <li>Geolocation: <span id="geolocation-result"></span></li>
+        </ul>
+    </div>
+</div>
+
+<hr />
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Modernizr</div>
+    <div class="panel-body">
+        <div id="modernizr-panel"></div>
+    </div>
+</div>
+
+
+
+@section scripts {
+    <script>
+        let support_geolocation = function () {
+            return "geolocation" in navigator;
+        };
+
+        let checkHTML5 = function () {
+            var html5check;
+            html5check = "Geolocation: " + Modernizr.geolocation;
+            html5check += "<br />Local Storage: " + Modernizr.localstorage;
+            html5check += "<br />Session Storage: " + Modernizr.sessionstorage;
+            html5check += "<br />Web Workers: " + Modernizr.webworkers;
+            html5check += "<br />Web Sockets: " + Modernizr.websockets;
+            html5check += "<br />Application Cache: " + Modernizr.applicationcache;
+            html5check += "<br />Drag and Drop: " + Modernizr.draganddrop;
+
+            html5check += "<br />Canvas: " + Modernizr.canvas;
+            html5check += "<br />Canvas Text: " + Modernizr.canvastext;
+
+            html5check += "<br />Video: " + Modernizr.video;
+            html5check += "<br />Audio: " + Modernizr.audio;
+
+            html5check += "<br />Input color: " + Modernizr.inputtypes.color;
+            html5check += "<br />Input range: " + Modernizr.inputtypes.range;
+
+            return html5check;
+        }
+
+
+        $("document").ready(function () {
+            $("#geolocation-result").html(support_geolocation());
+
+            $("#modernizr-panel").html(checkHTML5());
+        });
+    </script>
+}
