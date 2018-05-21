@@ -1,0 +1,81 @@
+﻿
+@{
+  ViewBag.Title = "Geolocation";
+}
+
+<h2>Geolocation</h2>
+
+
+<h3 class="alert-info">Your Location</h3>
+<section id="location">
+  Your location will be here.
+</section>
+
+<hr />
+
+<section id="mapsection">
+  <div id="map" style="height:600px; width:600px"></div>
+</section>
+
+
+@section scripts {
+  <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+<script>
+  class LocationChecker {
+    static pinLocationinMap() {
+      navigator.geolocation.getCurrentPosition(
+        (position) => { // success callback
+          let latitude = position.coords.latitude;
+          let longitude = position.coords.longitude;
+          // map
+          let googlePosition = google.maps.LatLng(latitude, longitude);
+          let mapOptions = {
+            zoom: 12,
+            center: googlePosition,
+            //mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          let mapDiv = document.getElementById("map");
+          let map = new google.maps.Map(mapDiv, mapOptions);
+
+          // marker
+          let markerOptions = {
+            position: googlePosition,
+            map: map,
+            title: "You are here."
+          };
+          let marker = new google.maps.Marker(markerOptions);
+
+          // info
+          let infoWindowOptions = {
+            content: `You are at Latitude: ${latitude}, Longitude: ${longitude}`,
+            position: googlePosition
+          };
+          let infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+          google.maps.event.addListener(marker, "click", () => { infoWindow.open(map) });
+        }
+      );
+    }
+
+    static displayLocation() {
+      if (!!navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => { // success callback
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            $('#location').text(`You are at Latitude: ${latitude}, Longitude: ${longitude}`);
+          },
+          (positionError) => { // error callback
+            $('#location').text(`code: ${positionError.code}, ${positionError.message}`);
+          }
+        );
+      } else {
+        $('#location').text("Your browser does not support geolocation.");
+      }
+    }
+  }
+  $(document).ready(function () {
+    LocationChecker.displayLocation();
+    //LocationChecker.pinLocationinMap();
+  });
+</script>
+}

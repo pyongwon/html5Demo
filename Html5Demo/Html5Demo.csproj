@@ -142,6 +142,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Html5Controller.cs" />
     <Compile Include="Global.asax.cs">
@@ -200,6 +201,7 @@
     <Content Include="Views\Html5\BrowserSupport.cshtml" />
     <Content Include="Views\Html5\GlobalAttributes.cshtml" />
     <Content Include="Views\Html5\TextElements.cshtml" />
+    <Content Include="Views\Api\Geolocation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

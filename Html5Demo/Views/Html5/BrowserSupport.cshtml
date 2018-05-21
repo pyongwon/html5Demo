@@ -1,144 +1,144 @@
 ﻿
 @{
-    ViewBag.Title = "BrowserSupport";
+  ViewBag.Title = "BrowserSupport";
 }
 
 <h2>Browser Support</h2>
 
 <div class="panel panel-info">
-    <div class="panel-heading">HTML5 APIs</div>
-    <div class="panel-body">
-        <ul>
-            <li>Geolocation: <span id="geolocation-result"></span></li>
-            <li>Local Storage: <span id="localStorage-result"></span></li>
-            <li>Web Worker: <span id="webWorker-result"></span></li>
-            <li>Offline App: <span id="offlineApp-result"></span></li>
-        </ul>
-    </div>
+  <div class="panel-heading">HTML5 APIs</div>
+  <div class="panel-body">
+    <ul>
+      <li>Geolocation: <span id="geolocation-result"></span></li>
+      <li>Local Storage: <span id="localStorage-result"></span></li>
+      <li>Web Worker: <span id="webWorker-result"></span></li>
+      <li>Offline App: <span id="offlineApp-result"></span></li>
+    </ul>
+  </div>
 </div>
 
 <div class="panel panel-info">
-    <div class="panel-heading">Media</div>
-    <div class="panel-body">
-        <ul>
-            <li>Canvas: <span id="canvas-result"></span></li>
-            <li>Canvas Text: <span id="canvasText-result"></span></li>
-            <li>Video: <span id="video-result"></span></li>
-            <li>Audio: <span id="audio-result"></span></li>
-        </ul>
-    </div>
+  <div class="panel-heading">Media</div>
+  <div class="panel-body">
+    <ul>
+      <li>Canvas: <span id="canvas-result"></span></li>
+      <li>Canvas Text: <span id="canvasText-result"></span></li>
+      <li>Video: <span id="video-result"></span></li>
+      <li>Audio: <span id="audio-result"></span></li>
+    </ul>
+  </div>
 </div>
 
 <div class="panel panel-info">
-    <div class="panel-heading">Input</div>
-    <div class="panel-body">
-        <ul>
-            <li>Input type Color: <span id="input-color-result"></span></li>
-            <li>Input type Date: <span id="input-date-result"></span></li>
-            <li>Input type Range: <span id="input-range-result"></span></li>
-        </ul>
-    </div>
+  <div class="panel-heading">Input</div>
+  <div class="panel-body">
+    <ul>
+      <li>Input type Color: <span id="input-color-result"></span></li>
+      <li>Input type Date: <span id="input-date-result"></span></li>
+      <li>Input type Range: <span id="input-range-result"></span></li>
+    </ul>
+  </div>
 </div>
 
 <hr />
 
 <div class="panel panel-primary">
-    <div class="panel-heading">Modernizr</div>
-    <div class="panel-body">
-        <div id="modernizr-panel"></div>
-    </div>
+  <div class="panel-heading">Modernizr</div>
+  <div class="panel-body">
+    <div id="modernizr-panel"></div>
+  </div>
 </div>
 
 
 
 @section scripts {
-    <script>
-        let support_geolocation = () => {
-            return "geolocation" in navigator;
-        };
-        let support_localStorage = () => {
-            return !!window.localStorage;
-        };
-        let support_webWorker = () => {
-            return "Worker" in window;
-        };
-        let support_offlineApp = () => {
-            return !!window.applicationCache;
-        };
+  <script>
+    let support_geolocation = () => {
+      return "geolocation" in navigator;
+    };
+    let support_localStorage = () => {
+      return !!window.localStorage;
+    };
+    let support_webWorker = () => {
+      return "Worker" in window;
+    };
+    let support_offlineApp = () => {
+      return !!window.applicationCache;
+    };
 
-        let support_canvas = () => {
-            return !!document.createElement("canvas").getContext;
-        };
-        let support_canvasText = () => {
-            if (!support_canvas()) {
-                return false;
-            }
-            var context = document.createElement("canvas").getContext("2d");
-            return typeof (context.fillText) === "function";
-        };
-        let support_video = () => {
-            return "canPlayType" in document.createElement("video");
-        };
-        let support_audio = () => {
-            return !!document.createElement("audio").canPlayType;
-        };
+    let support_canvas = () => {
+      return !!document.createElement("canvas").getContext;
+    };
+    let support_canvasText = () => {
+      if (!support_canvas()) {
+        return false;
+      }
+      var context = document.createElement("canvas").getContext("2d");
+      return typeof (context.fillText) === "function";
+    };
+    let support_video = () => {
+      return "canPlayType" in document.createElement("video");
+    };
+    let support_audio = () => {
+      return !!document.createElement("audio").canPlayType;
+    };
 
-        let support_input_color = () => {
-            let inputElement = document.createElement("input");
-            inputElement.setAttribute("type", "color");
-            return (inputElement.type !== "text");
-        };
+    let support_input_color = () => {
+      let inputElement = document.createElement("input");
+      inputElement.setAttribute("type", "color");
+      return (inputElement.type !== "text");
+    };
 
-        // general function to check input types
-        let support_input = (inputType) => {
-            let inputElement = document.createElement("input");
-            inputElement.setAttribute("type", inputType);
-            return (inputElement.type !== "text");
-        };
+    // general function to check input types
+    let support_input = (inputType) => {
+      let inputElement = document.createElement("input");
+      inputElement.setAttribute("type", inputType);
+      return (inputElement.type !== "text");
+    };
 
-        let checkHTML5Modernizr = function () {
-            var html5check;
-            html5check = "Geolocation: " + Modernizr.geolocation;
-            html5check += "<br />Local Storage: " + Modernizr.localstorage;
-            html5check += "<br />Web Workers: " + Modernizr.webworkers;
-            html5check += "<br />Application Cache: " + Modernizr.applicationcache;
-            html5check += "<br />";
+    let checkHTML5Modernizr = function () {
+      var html5check;
+      html5check = "Geolocation: " + Modernizr.geolocation;
+      html5check += "<br />Local Storage: " + Modernizr.localstorage;
+      html5check += "<br />Web Workers: " + Modernizr.webworkers;
+      html5check += "<br />Application Cache: " + Modernizr.applicationcache;
+      html5check += "<br />";
 
-            html5check += "<br />Canvas: " + Modernizr.canvas;
-            html5check += "<br />Canvas Text: " + Modernizr.canvastext;
-            html5check += "<br />Video: " + Modernizr.video;
-            html5check += "<br />Audio: " + Modernizr.audio;
-            html5check += "<br />";
+      html5check += "<br />Canvas: " + Modernizr.canvas;
+      html5check += "<br />Canvas Text: " + Modernizr.canvastext;
+      html5check += "<br />Video: " + Modernizr.video;
+      html5check += "<br />Audio: " + Modernizr.audio;
+      html5check += "<br />";
 
-            html5check += "<br />Input color: " + Modernizr.inputtypes.color;
-            html5check += "<br />Input date: " + Modernizr.inputtypes.date;
-            html5check += "<br />Input range: " + Modernizr.inputtypes.range;
-            html5check += "<br />";
+      html5check += "<br />Input color: " + Modernizr.inputtypes.color;
+      html5check += "<br />Input date: " + Modernizr.inputtypes.date;
+      html5check += "<br />Input range: " + Modernizr.inputtypes.range;
+      html5check += "<br />";
 
-            html5check += "<br />Session Storage: " + Modernizr.sessionstorage;
-            html5check += "<br />Web Sockets: " + Modernizr.websockets;
-            html5check += "<br />Drag and Drop: " + Modernizr.draganddrop;
+      html5check += "<br />Session Storage: " + Modernizr.sessionstorage;
+      html5check += "<br />Web Sockets: " + Modernizr.websockets;
+      html5check += "<br />Drag and Drop: " + Modernizr.draganddrop;
 
-            return html5check;
-        };
+      return html5check;
+    };
 
 
-        $("document").ready(function () {
-            $("#geolocation-result").html(support_geolocation());
-            $("#localStorage-result").html(support_localStorage());
-            $("#webWorker-result").html(support_webWorker());
-            $("#offlineApp-result").html(support_offlineApp());
+    $("document").ready(function () {
+      $("#geolocation-result").html(support_geolocation());
+      $("#localStorage-result").html(support_localStorage());
+      $("#webWorker-result").html(support_webWorker());
+      $("#offlineApp-result").html(support_offlineApp());
 
-            $("#canvas-result").html(support_canvas());
-            $("#canvasText-result").html(support_canvasText());
-            $("#video-result").html(support_video());
-            $("#audio-result").html(support_audio());
+      $("#canvas-result").html(support_canvas());
+      $("#canvasText-result").html(support_canvasText());
+      $("#video-result").html(support_video());
+      $("#audio-result").html(support_audio());
 
-            $("#input-color-result").html(support_input_color());
-            $("#input-date-result").html(support_input('date'));
-            $("#input-range-result").html(support_input('range'));
+      $("#input-color-result").html(support_input_color());
+      $("#input-date-result").html(support_input('date'));
+      $("#input-range-result").html(support_input('range'));
 
-            $("#modernizr-panel").html(checkHTML5Modernizr());
-        });
-    </script>
+      $("#modernizr-panel").html(checkHTML5Modernizr());
+    });
+  </script>
 }
