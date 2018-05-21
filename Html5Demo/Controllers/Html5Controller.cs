@@ -19,5 +19,11 @@ namespace Html5Demo.Controllers
         {
             return View();
         }
+
+        // GET: TextElements
+        public ActionResult TextElements()
+        {
+            return View();
+        }
     }
 }
