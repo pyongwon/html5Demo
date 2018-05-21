@@ -8,8 +8,14 @@ namespace Html5Demo.Controllers
 {
     public class Html5Controller : Controller
     {
-        // GET: Html5
+        // GET: BrowserSupport
         public ActionResult BrowserSupport()
+        {
+            return View();
+        }
+
+        // GET: GlobalAttributes
+        public ActionResult GlobalAttributes()
         {
             return View();
         }
