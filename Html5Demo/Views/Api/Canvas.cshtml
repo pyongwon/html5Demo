@@ -1,0 +1,106 @@
+﻿
+@{
+  ViewBag.Title = "Canvas";
+}
+
+<h2>Canvas</h2>
+
+<canvas id="mycanvas1" height="300" width="600"></canvas>
+<canvas id="mycanvas2" height="300" width="600"></canvas>
+<canvas id="mycanvas3" height="300" width="600"></canvas>
+<canvas id="mycanvas4" height="300" width="600"></canvas>
+<canvas id="mycanvas5" height="300" width="600"></canvas>
+<canvas id="mycanvas6" height="300" width="600"></canvas>
+
+<figure>
+  <img src="~/Content/Images/donut.png" alt="pic" />
+  <figcaption>My Image</figcaption>
+</figure>
+
+
+@section scripts {
+  <script>
+    let draw1 = () => {
+      let canvas = document.getElementById("mycanvas1");
+      let context = canvas.getContext("2d");
+      context.strokeStyle = "red";
+      context.moveTo(100, 100);
+      context.lineTo(300, 150);
+      context.lineTo(100, 250);
+      context.stroke();
+    };
+
+    let draw2 = () => {
+      let canvas = document.getElementById("mycanvas2");
+      let context = canvas.getContext("2d");
+
+      context.strokeStyle = "red";
+      context.beginPath();
+      context.rect(100, 100, 100, 50);
+      context.closePath();
+      context.stroke();
+
+      context.fillStyle = "blue";
+      context.beginPath();
+      context.moveTo(200, 200);
+      context.arc(200, 200, 50, 0, Math.PI * 0.5, true); // 0 - 90 degrees, counter-clockwise
+      context.closePath();
+      context.fill();
+    };
+
+    let draw3 = () => {
+      let canvas = document.getElementById("mycanvas3");
+      let context = canvas.getContext("2d");
+
+      context.fillStyle = "red";
+      context.fillRect(100, 100, 100, 50);
+      context.strokeStyle = "blue";
+      context.strokeRect(100, 160, 100, 50);
+    };
+
+    let draw4 = () => {
+      let canvas = document.getElementById("mycanvas4");
+      let context = canvas.getContext("2d");
+
+      let grd = context.createLinearGradient(0, 0, 200, 100);
+      grd.addColorStop(0, "#FF0000"); // red
+      grd.addColorStop(0.5, "#00FF00"); // green
+      grd.addColorStop(1, "#0000FF"); // blue
+      context.fillStyle = grd;
+      context.fillRect(0, 0, 200, 100);
+    };
+
+    let draw5 = () => {
+      let canvas = document.getElementById("mycanvas5");
+      let context = canvas.getContext("2d");
+
+      context.strokeStyle = "red";
+      context.fillStyle = "blue";
+      context.font = "2.4em Arial";
+      context.textAlign = "center";
+
+      context.strokeText("Hello, World", 200, 50, 200);
+      context.fillText("Hello, World", 200, 80, 200);
+    };
+
+    let draw6 = () => {
+      let canvas = document.getElementById("mycanvas6");
+      let context = canvas.getContext("2d");
+
+      var img = new Image();
+      img.src = "../../Content/Images/donut.png";
+      img.onload = function () {
+        context.drawImage(img, 0, 0);
+      }
+    };
+
+    $("document").ready(() => {
+      draw1();
+      draw2();
+      draw3();
+      draw4();
+      draw5();
+      draw6();
+    });
+  </script>
+}

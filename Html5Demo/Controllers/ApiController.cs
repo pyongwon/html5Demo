@@ -13,5 +13,17 @@ namespace Html5Demo.Controllers
         {
             return View();
         }
+
+        // GET: Canvas
+        public ActionResult Canvas()
+        {
+            return View();
+        }
+
+        // GET: Canvas
+        public ActionResult CanvasAdvanced()
+        {
+            return View();
+        }
     }
 }

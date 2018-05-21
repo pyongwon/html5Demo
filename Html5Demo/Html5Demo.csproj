@@ -202,6 +202,8 @@
     <Content Include="Views\Html5\GlobalAttributes.cshtml" />
     <Content Include="Views\Html5\TextElements.cshtml" />
     <Content Include="Views\Api\Geolocation.cshtml" />
+    <Content Include="Views\Api\Canvas.cshtml" />
+    <Content Include="Views\Api\CanvasAdvanced.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
