@@ -1,7 +1,113 @@
 ﻿
 @{
-    ViewBag.Title = "CanvasAdvanced";
+  ViewBag.Title = "CanvasAdvanced";
 }
 
 <h2>Canvas Advanced</h2>
 
+<canvas id="mycanvas7" height="300" width="600"></canvas>
+<canvas id="mycanvas8" height="300" width="600"></canvas>
+<canvas id="mycanvas9" height="300" width="600"></canvas>
+<canvas id="mycanvas10" height="300" width="600"></canvas>
+<canvas id="mycanvas11" height="300" width="600"></canvas>
+<canvas id="mycanvas12" height="300" width="600"></canvas>
+
+@section scripts {
+  <script>
+    let draw7 = () => {
+      let canvas = document.getElementById("mycanvas7");
+      let context = canvas.getContext("2d");
+      context.fillStyle = "#0000FF";
+      context.fillRect(0, 0, 100, 100); // blue
+      context.save();
+      context.fillStyle = "#FF0000";
+      context.fillRect(100, 0, 200, 100); // red
+      context.restore();
+      context.fillRect(200, 0, 100, 100); // blue again
+    };
+
+    let draw8 = () => {
+      let canvas = document.getElementById("mycanvas8");
+      let context = canvas.getContext("2d");
+      context.fillStyle = "#FF0000";
+      context.fillRect(0, 0, 200, 200); // red
+      context.clearRect(25, 25, 150, 150);
+    };
+
+    let draw_circle = (ctx) => {
+      ctx.fillStyle = "#FF0000"; // red
+      ctx.beginPath();
+      ctx.arc(50, 50, 50, 0, 2 * Math.PI);
+      ctx.fill();
+    };
+    let draw_rectangle = (ctx) => {
+      ctx.fillStyle = "#0000FF"; // blue
+      ctx.fillRect(15, 15, 75, 75);
+    };
+
+    let draw9 = () => {
+      let canvas = document.getElementById("mycanvas9");
+      let context = canvas.getContext("2d");
+
+      context.fillStyle = "black";
+      context.fillRect(0, 0, 20, 20);
+      context.save();
+
+      draw_circle(context);
+
+      context.translate(0, 100); // (0,100) becomes (0,0)
+      draw_rectangle(context);
+
+      context.restore();
+      context.fillRect(0, 30, 20, 20); // black
+    };
+
+    let draw10 = () => {
+      let canvas = document.getElementById("mycanvas10");
+      let context = canvas.getContext("2d");
+
+      draw_circle(context);
+
+      context.translate(0, 100); // (0,100) becomes (0,0)
+      context.scale(2, 2); // 200%
+
+      draw_circle(context);
+    };
+
+    let draw11 = () => {
+      let canvas = document.getElementById("mycanvas11");
+      let context = canvas.getContext("2d");
+
+      context.fillStyle = "#FF0000"; //red
+      context.fillRect(0, 0, 100, 100);
+
+      context.rotate(45 * Math.PI / 180); // 45 degree
+
+      context.fillStyle = "#0000FF"; //blue
+      context.fillRect(100, 0, 100, 100);
+    };
+
+    let draw12 = () => {
+      let canvas = document.getElementById("mycanvas12");
+      let context = canvas.getContext("2d");
+
+      context.fillStyle = "#FF0000"; //red
+      context.fillRect(0, 0, 50, 50);
+
+      context.transform(2, 0, 0, 2, 0, 0); // scale 2 times
+      context.fillRect(50, 0, 50, 50);
+
+      context.setTransform(1, 0.5, 0, 1, 0, 0); // reset scale, skew horizontally
+      context.fillRect(100, 100, 50, 50);
+    };
+
+    $("document").ready(() => {
+      draw7();
+      draw8();
+      draw9();
+      draw10();
+      draw11();
+      draw12();
+    });
+  </script>
+}
