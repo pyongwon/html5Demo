@@ -25,5 +25,11 @@ namespace Html5Demo.Controllers
         {
             return View();
         }
+
+        // GET: Canvas
+        public ActionResult Video()
+        {
+            return View();
+        }
     }
 }

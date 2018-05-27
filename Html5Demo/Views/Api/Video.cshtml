@@ -1,0 +1,62 @@
+﻿
+@{
+  ViewBag.Title = "Video";
+}
+
+<h2>Video</h2>
+
+<div class="alert-info">
+  HTML Video Example - Courtesy of <a href="https://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.
+</div>
+
+<video width="320" height="240" controls="controls">
+  <source src="~/Content/Media/bunny.ogg" type="video/ogg" />
+  <source src="~/Content/Media/bunny.mp4" type="video/mp4" />
+  <source src="~/Content/Media/Video.webm" type="video/webm" />
+  The video cannot be played.
+</video>
+<br />
+
+<video id="myVideo" width="320" height="240" controls="controls">
+  The video cannot be played.
+</video>
+<br />
+
+@section scripts {
+  <script>
+    let canPlayFormat = function (video, format) {
+      return video.canPlayType(format) !== "";
+    };
+
+    let getPlayableVideoFormat = function (video) {
+      ["video/mp4", "video/ogg", "video/webm"].forEach((format) => {
+        console.log(`${format}: ${video.canPlayType(format)}`);
+      });
+    };
+
+    let playVeideo = function () {
+      let video = document.getElementById("myVideo");
+      video.addEventListener("play", (e) => {
+        console.log(video.currentSrc + ' starts playing');
+      }, false);
+      video.addEventListener("ended", (e) => {
+        console.log(video.currentSrc + ' ended');
+      }, false);
+
+      video.src = "../../Content/Media/bunny.mp4";
+      if (video.ended) {
+        video.load();
+      }
+      video.play();
+    };
+
+    $(document).ready(function () {
+      playVeideo();
+      let video = document.getElementById("myVideo");
+      getPlayableVideoFormat(video);
+      ["video/mp4", "video/ogg", "video/webm"].forEach((format) => {
+        console.log(`${format}: ${canPlayFormat(video, format)}`);
+      });
+    });
+  </script>
+}
