@@ -207,6 +207,7 @@
     <Content Include="Views\Api\Canvas.cshtml" />
     <Content Include="Views\Api\CanvasAdvanced.cshtml" />
     <Content Include="Views\Api\Video.cshtml" />
+    <Content Include="Views\Api\WebStorage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

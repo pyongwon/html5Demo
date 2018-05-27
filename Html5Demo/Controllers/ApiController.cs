@@ -26,8 +26,14 @@ namespace Html5Demo.Controllers
             return View();
         }
 
-        // GET: Canvas
+        // GET: Video
         public ActionResult Video()
+        {
+            return View();
+        }
+
+        // GET: WebStorage
+        public ActionResult WebStorage()
         {
             return View();
         }

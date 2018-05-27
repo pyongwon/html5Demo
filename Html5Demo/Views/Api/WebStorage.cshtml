@@ -1,0 +1,123 @@
+﻿
+@{
+  ViewBag.Title = "WebStorage";
+}
+
+<h2>WebStorage</h2>
+
+@section scripts {
+  <script>
+    let checkWebStorage = () => {
+      if (!!window.localStorage) {
+        let key = "homer";
+        window.localStorage.setItem(key, "donut");
+        console.log(localStorage.getItem(key));
+      }
+    };
+
+    let testCookies = () => {
+      let key = "greet";
+      let value = "Hello, World";
+
+      // write
+      let date = new Date();
+      date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 days
+      let expire = date.toUTCString();
+      let myCookie = key + "=" + value + "; expires=" + expire + ';path=/';
+      console.log(myCookie);
+      document.cookie = myCookie;
+
+      // read
+      let cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        if (cookie.indexOf(key + '=') === 0) {
+          console.log(key + ': ' + cookie.substring(key.length + 1));
+        }
+      }
+    };
+
+    let testLocalStorage = () => {
+      let key = "greet";
+      let value = "Hello, World";
+
+      // write
+      localStorage.setItem(key, value);
+
+      // read
+      console.log(key + ': ' + localStorage.getItem(key));
+    };
+
+    let storageArraySyntax = () => {
+      let key = "greet";
+      let value = "Hello, World";
+
+      // write
+      localStorage[key] = value;
+
+      // read
+      console.log(key + ': ' + localStorage[key]);
+    };
+
+    let storageDotSyntax = () => {
+      let value = "Hello, World";
+
+      // write
+      localStorage.greet = value;
+
+      // read
+      console.log('greet' + ': ' + localStorage.greet);
+    };
+
+    let storageIterate = () => {
+      localStorage.clear();
+      localStorage["greet1"] = "Good morning.";
+      localStorage["greet2"] = "Good afternoon.";
+      localStorage["greet3"] = "Good evening.";
+
+      for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        let value = localStorage[key];
+        console.log(key + ': ' + value);
+      }
+    };
+
+    let storageRemoveItem = () => {
+      localStorage.clear();
+      localStorage["greet1"] = "Good morning.";
+      localStorage["greet2"] = "Good afternoon.";
+      localStorage["greet3"] = "Good evening.";
+
+      console.log(localStorage.length); // 3
+
+      localStorage.removeItem("greet2");
+
+      console.log(localStorage.length); // 2
+    };
+
+    let testSessionStorage = () => {
+      sessionStorage.clear();
+
+      let key = "greet";
+      let value = "Hello, World";
+
+      // write
+      sessionStorage.setItem(key, value);
+
+      // read
+      console.log(sessionStorage.length); // 1
+      console.log(key + ': ' + sessionStorage[key]);
+    };
+
+    $(document).ready(function () {
+      checkWebStorage();
+      testCookies();
+      testLocalStorage();
+      storageArraySyntax();
+      storageDotSyntax();
+      storageIterate();
+      storageRemoveItem();
+      testSessionStorage();
+    });
+  </script>
+}
