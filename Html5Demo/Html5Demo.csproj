@@ -208,6 +208,7 @@
     <Content Include="Views\Api\CanvasAdvanced.cshtml" />
     <Content Include="Views\Api\Video.cshtml" />
     <Content Include="Views\Api\WebStorage.cshtml" />
+    <Content Include="Views\Api\DragAndDrop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

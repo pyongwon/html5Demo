@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - HTML5</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title - HTML5</title>
+  @Styles.Render("~/Content/css")
+  @Scripts.Render("~/bundles/modernizr")
+  @RenderSection("styles", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,6 +42,8 @@
                           <li>@Html.ActionLink("Video", "Video", "Api")</li>
                           <li role="separator" class="divider"></li>
                           <li>@Html.ActionLink("Web Storage", "WebStorage", "Api")</li>
+                          <li role="separator" class="divider"></li>
+                          <li>@Html.ActionLink("Drag And Drop", "DragAndDrop", "Api")</li>
                         </ul>
                     </li>
                 </ul>

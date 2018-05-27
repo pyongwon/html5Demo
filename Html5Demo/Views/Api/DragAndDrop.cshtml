@@ -1,0 +1,53 @@
+﻿
+@{
+  ViewBag.Title = "DragAndDrop";
+}
+
+<h2>DragAndDrop</h2>
+
+<img id="img1" src="~/Content/Images/donut.png" draggable="true" />
+<br /><br />
+
+<div id="div1"></div>
+
+
+@section scripts {
+  <script>
+    let isDragAndDropSupported = () => {
+      return 'draggable' in document.createElement('span');
+    };
+
+    $('document').ready(function () {
+      console.log(isDragAndDropSupported());
+
+      let img1 = document.getElementById('img1');
+
+      img1.addEventListener('dragstart', (event) => {
+        event.dataTransfer.setData("text", event.target.id);
+      });
+
+      let div1 = document.getElementById('div1');
+
+      div1.addEventListener('drop', (event) => {
+        event.preventDefault();
+        let dragElementId = event.dataTransfer.getData("text");
+        event.target.appendChild(document.getElementById(dragElementId));
+      });
+
+      div1.addEventListener('dragover', (event) => {
+        event.preventDefault();
+      });
+    });
+  </script>
+}
+
+@section styles {
+  <style>
+    #div1 {
+      border: 1px solid black;
+      height: 150px;
+      width: 150px;
+      padding: 10px;
+    }
+  </style>
+}

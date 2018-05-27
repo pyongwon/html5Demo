@@ -37,5 +37,11 @@ namespace Html5Demo.Controllers
         {
             return View();
         }
+
+        // GET: DragAndDrop
+        public ActionResult DragAndDrop()
+        {
+            return View();
+        }
     }
 }
