@@ -38,6 +38,12 @@ namespace Html5Demo.Controllers
             return View();
         }
 
+        // GET: WebWorker
+        public ActionResult WebWorker()
+        {
+            return View();
+        }
+
         // GET: DragAndDrop
         public ActionResult DragAndDrop()
         {

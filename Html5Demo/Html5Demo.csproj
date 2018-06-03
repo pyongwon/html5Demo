@@ -186,6 +186,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyWorker1.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />
@@ -209,6 +210,7 @@
     <Content Include="Views\Api\Video.cshtml" />
     <Content Include="Views\Api\WebStorage.cshtml" />
     <Content Include="Views\Api\DragAndDrop.cshtml" />
+    <Content Include="Views\Api\WebWorker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

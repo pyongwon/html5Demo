@@ -1,0 +1,46 @@
+﻿
+@{
+  ViewBag.Title = "WebWorker";
+}
+
+<h2>WebWorker</h2>
+
+<body>
+  <input type="number" id="data" value="30" min="0" max="100" />
+  <input type="button" id="calcBtn" value="Calculate" />
+  <input type="button" id="stopBtn" value="Stop" />
+  <br /><br />
+  <div id="result"></div>
+</body>
+
+@section scripts {
+  <script>
+    let worker;
+    let support_webWorker = () => !!window.Worker;
+
+    let calculate = () => {
+      var seedData = $("#data").val();
+      worker.postMessage(seedData); // start the worker
+      document.getElementById("result").textContent = "Processing ...";
+    }
+
+    let stop = () => {
+      worker.terminate();
+      document.getElementById("result").textContent = "Worker Stopped.";
+    }
+
+    $("document").ready(function () {
+      $("#calcBtn").click(calculate);
+      $("#stopBtn").click(stop);
+
+      if (!support_webWorker()) {
+        alert("Web Worker is not supported.");
+      } else {
+        worker = new Worker("../Scripts/MyWorker1.js");
+        worker.addEventListener("message", (event) => {
+          document.getElementById("result").textContent = event.data;
+        }, false);
+      }
+    });
+  </script>
+}
