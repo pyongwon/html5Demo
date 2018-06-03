@@ -1,0 +1,139 @@
+﻿
+@{
+  ViewBag.Title = "FormControls";
+}
+
+@section styles {
+  <style>
+    input {
+      display: inline !important;
+    }
+  </style>
+}
+
+<h2>FormControls</h2>
+
+<div>
+  <h4>Colors</h4>
+  <input list="color-data" id="colors" />
+  <datalist id="color-data">
+    <option>Red</option>
+    <option>Green</option>
+    <option>Blue</option>
+    <option>Black</option>
+    <option>White</option>
+  </datalist>
+</div>
+
+<div>
+  <h4>Output</h4>
+  <input type="number" id="x" value="0"> +
+  <input type="number" id="y" value="0"> =
+  <output id="xysum" for="x y" style="display:inline-block">0</output>
+</div>
+<br />
+<br />
+
+<div>
+  <label>Choose the background color: </label>
+  <input type="color" id="colorPicker" />
+</div>
+<br />
+<br />
+
+<div>
+  <p>Date and Time: <input type="datetime" id="datetime1" /></p>
+  <p>Date and Time Local: <input type="datetime-local" id="datetime2" /></p>
+  <p>Date: <input type="date" id="date1" /></p>
+  <p>Time: <input type="time" id="time1" /></p>
+  <p>Month: <input type="month" id="month1" /></p>
+  <p>Week: <input type="week" id="week1" /></p>
+</div>
+<br />
+<br />
+
+<div id="numbers" style="width:400px">
+  <div>
+    R:
+    <input type="range" id="rangeR" min="0" max="255" value="120" step="5" />
+    <input type="number" id="numberR" min="0" max="255" value="120" />
+  </div>
+  <div>
+    G:
+    <input type="range" id="rangeG" min="0" max="255" value="120" step="5" />
+    <input type="number" id="numberG" min="0" max="255" value="120" />
+  </div>
+  <div>
+    B:
+    <input type="range" id="rangeB" min="0" max="255" value="120" step="5" />
+    <input type="number" id="numberB" min="0" max="255" value="120" />
+  </div>
+  <p id="result"></p>
+</div>
+<br />
+<br />
+
+<form id="form1" method="post" action="#">
+  <p>Email: <input type="email" id="email1" /></p>
+  <p>URL: <input type="url" id="url1" /></p>
+  <p>Phone: <input type="tel" id="tel1" /></p>
+  <input type="submit" value="Submit" />
+</form>
+<br />
+<br />
+
+<div>
+  <input type="search" id="searchterm" />
+  <input type="submit" />
+</div>
+<br />
+<br />
+
+@section scripts {
+  <script>
+    let displayResult = () => {
+      let rgbColor = "rgb(" + $("#numberR").val() + "," + $("#numberG").val() + "," + $("#numberB").val() + ")";
+      $("#result").html(rgbColor);
+      $("#numbers").css("background-color", rgbColor);
+    };
+
+    $(document).ready(function () {
+      $("#colors").on("change", (e) => {
+        alert(e.target.value);
+      });
+
+      $("#x, #y").on("change", e => {
+        let result = parseInt($("#x").val()) + parseInt($("#y").val())
+        $("#xysum").val(result);
+      });
+
+      $("#colorPicker").on("change", e => {
+        $("body").css("background-color", e.target.value);
+      });
+
+      $("#rangeR").on("change", e => {
+        $("#numberR").val(e.target.value);
+        displayResult();
+      });
+      $("#numberR").on("change", e => {
+        $("#rangeR").val(e.target.value); displayResult();
+      });
+      $("#rangeG").on("change", e => {
+        $("#numberG").val(e.target.value);
+        displayResult();
+      });
+      $("#numberG").on("change", e => {
+        $("#rangeG").val(e.target.value);
+        displayResult();
+      });
+      $("#rangeB").on("change", e => {
+        $("#numberB").val(e.target.value);
+        displayResult();
+      });
+      $("#numberB").on("change", e => {
+        $("#rangeB").val(e.target.value);
+        displayResult();
+      });
+    });
+  </script>
+}

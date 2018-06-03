@@ -1,0 +1,52 @@
+﻿
+@{
+  ViewBag.Title = "Validation5";
+  string emailPattern = @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$";
+}
+
+@section styles {
+<style>
+  input:valid {
+    background-color: white;
+    color: black;
+  }
+  input:invalid {
+    background-color: red;
+    color: white;
+  }
+  input:invalid:required {
+    background-color: yellow;
+    color: white;
+  }
+  input:invalid:out-of-range {
+    background-color: green;
+    color: white;
+  }
+</style>
+}
+
+<h2>Validation HTML5</h2>
+
+<form id="form1" method="post" action="#">
+  <p>
+    <label for="username">Name:</label>
+    <input type="text" id="username" autofocus required maxlength="30" placeholder="Enter username" />
+  </p>
+  <p>
+    <label for="email">Email:</label>
+    <input type="text" id="email"
+            maxlength="30" placeholder="Enter your email"
+            pattern=@emailPattern />
+  </p>
+  <p>
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone"
+            maxlength="15" placeholder="xxx-xxx-xxxx"
+            pattern="^\d{3}-\d{3}-\d{4}$" />
+  </p>
+  <p>
+    <label for="age">Age:</label>
+    <input type="text" id="age" min="0" max="150" value="30" maxlength="3" />
+  </p>
+  <input type="submit" />
+</form>

@@ -143,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Html5Controller.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,6 +212,9 @@
     <Content Include="Views\Api\WebStorage.cshtml" />
     <Content Include="Views\Api\DragAndDrop.cshtml" />
     <Content Include="Views\Api\WebWorker.cshtml" />
+    <Content Include="Views\Form\FormControls.cshtml" />
+    <Content Include="Views\Form\Validation4.cshtml" />
+    <Content Include="Views\Form\Validation5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
